@@ -1,5 +1,8 @@
+from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+from django.views import View
+from .forms import SearchForm
 
 # Create your views here.
 
@@ -11,7 +14,7 @@ def get_report(city):
     session.headers['Accept-Language']=LANGUAGE
     session.headers['Content-Language']=LANGUAGE
     city=city.replace(' ','+')
-    result = dict()
+    result=dict()
     try:
         html_content=session.get(f'https://www.google.com/search?q=weather+in+{city}').text
         soup=BeautifulSoup(html_content,'html.parser')
@@ -22,4 +25,15 @@ def get_report(city):
         result['error']='invalid location'
     return result
 
-print(get_report(input()))
+# print(get_report(input()))
+
+class HomeView(View):
+    def get(self,request):
+        fm=SearchForm()
+        return render(request,'core/home.html',{'form':fm})
+
+    def post(self,request):
+        fm=SearchForm(request.POST)
+        if fm.is_valid():
+            print(fm.cleaned_data['loc'])
+        return render(request,'core/home.html',{'form':fm})
