@@ -11,12 +11,15 @@ def get_report(city):
     session.headers['Accept-Language']=LANGUAGE
     session.headers['Content-Language']=LANGUAGE
     city=city.replace(' ','+')
-    html_content=session.get(f'https://www.google.com/search?q=weather+in+{city}').text
-    soup=BeautifulSoup(html_content,'html.parser')
     result = dict()
-    result['region']=soup.find("span",attrs={"class":"BNeawe tAd8D AP7Wnd"}).text
-    result['temp_now']=soup.find("div",attrs={"class":"BNeawe iBp4i AP7Wnd"}).text
-    result['dayhour'],result['weather_now']=soup.find("div",attrs={"class":"BNeawe tAd8D AP7Wnd"}).text.split('\n')
+    try:
+        html_content=session.get(f'https://www.google.com/search?q=weather+in+{city}').text
+        soup=BeautifulSoup(html_content,'html.parser')
+        result['region']=soup.find("span",attrs={"class":"BNeawe tAd8D AP7Wnd"}).text
+        result['temp_now']=soup.find("div",attrs={"class":"BNeawe iBp4i AP7Wnd"}).text
+        result['day_hour'],result['weather_now']=soup.find("div",attrs={"class":"BNeawe tAd8D AP7Wnd"}).text.split('\n')
+    except:
+        result['error']='invalid location'
     return result
 
 print(get_report(input()))
