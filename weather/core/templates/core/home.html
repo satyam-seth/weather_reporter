@@ -14,4 +14,14 @@
             </div>
         </div>
     </form>
+    <div>
+        {% if result %}
+            <h1>{{result.region}}</h1>
+            <h1>{{result.temp_now}}</h1>
+            <h1>{{result.day_hour}}</h1>
+        {% endif %}
+        {% if error %}
+            <h1>{{error}}</h1>
+        {% endif %}
+    </div>
 {% endblock content %}
