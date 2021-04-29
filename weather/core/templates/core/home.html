@@ -2,26 +2,41 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-    <form action="{% url 'home' %}" method="POST">
-        {% csrf_token %}
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="{{form.loc.id_for_label}}">{{form.loc.label}}</span>
-            </div>
-            {{form.loc}}
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-danger">Go</button>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-12">
+                <p class="text-responsive text-center text-white">Enter Your Location and Get Weather Report</p>
             </div>
         </div>
-    </form>
-    <div>
-        {% if result %}
-            <h1>{{result.region}}</h1>
-            <h1>{{result.temp_now}}</h1>
-            <h1>{{result.day_hour}}</h1>
-        {% endif %}
-        {% if error %}
-            <h1>{{error}}</h1>
-        {% endif %}
+        <div class="row px-3">
+            <form action="{% url 'home' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="{{form.loc.id_for_label}}">{{form.loc.label}}</span>
+                    </div>
+                    {{form.loc}}
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-danger">Go</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            {% if result %}
+                <h1>{{result.region}}</h1>
+                <h1>{{result.temp_now}}</h1>
+                <h1>{{result.weather_now}}</h1>
+                <h1>{{result.day_hour}}</h1>
+            {% elif error %}
+                <h1>{{error}}</h1>
+            {% else %}
+                <div class="py-5"></div>
+                <div class="py-5"></div>
+                <div class="py-5"></div>
+                <div class="py-5"></div>
+                <div class="py-5"></div>
+            {% endif %}
+        </div>
     </div>
 {% endblock content %}

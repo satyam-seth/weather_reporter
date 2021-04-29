@@ -25,12 +25,10 @@ def get_report(loc):
         pass
     return result
 
-# print(get_report(input()))
-
 class HomeView(View):
     def get(self,request):
         fm=SearchForm()
-        context={'form':fm}
+        context={'form':fm,'home_active':'active'}
         return render(request,'core/home.html',context)
 
     def post(self,request):
@@ -43,4 +41,5 @@ class HomeView(View):
         else:
             context['error']='invalid location'
         context['form']=fm
+        context['home_active']='active'
         return render(request,'core/home.html',context)

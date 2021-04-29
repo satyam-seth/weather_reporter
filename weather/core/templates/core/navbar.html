@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light shadow-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <span style="font-size: 3.7vh;">
+          <img src="" width="35px" alt="logo">
+          <b>Weather Reporter</b>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {{home_active}}" aria-current="page" href="{% url 'home' %}"><b>Home</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{api_active}}" href=""><b>API</b></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
