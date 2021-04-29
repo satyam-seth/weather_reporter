@@ -2,41 +2,56 @@
 {% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-    <div class="container">
-        <div class="row pt-5">
-            <div class="col-12">
-                <p class="text-responsive text-center text-white">Enter Your Location and Get Weather Report</p>
-            </div>
-        </div>
-        <div class="row px-3">
-            <form action="{% url 'home' %}" method="POST">
-                {% csrf_token %}
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="{{form.loc.id_for_label}}">{{form.loc.label}}</span>
-                    </div>
-                    {{form.loc}}
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-danger">Go</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div>
-            {% if result %}
-                <h1>{{result.region}}</h1>
-                <h1>{{result.temp_now}}</h1>
-                <h1>{{result.weather_now}}</h1>
-                <h1>{{result.day_hour}}</h1>
-            {% elif error %}
-                <h1>{{error}}</h1>
-            {% else %}
-                <div class="py-5"></div>
-                <div class="py-5"></div>
-                <div class="py-5"></div>
-                <div class="py-5"></div>
-                <div class="py-5"></div>
-            {% endif %}
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-12 py-4">
+            <p class="text-responsive text-center">Enter Your Location To Get Weather Report</p>
         </div>
     </div>
+    <div class="row px-3">
+        <form action="{% url 'home' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="{{form.loc.id_for_label}}">{{form.loc.label}}</span>
+                </div>
+                {{form.loc}}
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-danger">Go</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pb-5">
+        {% if result %}
+        <div class="row text-responsive text-center py-5">
+            <div class="col-12 col-md-6 py-3"><i class="fas fa-map-marker-alt"></i> {{result.region}}</div>
+            <div class="col-12 col-md-6 py-3"><i class="fas fa-clock"></i> {{result.day_hour}}</div>
+            <div class="col-6 py-3"><i class="fas fa-temperature-high"></i> {{result.temp_now}}</div>
+            <div class="col-6 py-3"><i class="fas fa-water"></i> {{result.weather_now}}</div>
+        </div>
+        {% else %}
+            {% if error %}
+                <div class="h5 alert alert-danger mt-5 text-center" role="alert">Oops something went wrong or {{error}}</div>
+            {% endif %}
+        <div class="row pt-2 mt-5 text-center">
+            <div class="col-12 pb-2">
+                <div class="border rounded p-4 shadow">
+                    Weather is the state of the atmosphere, describing for example the degree to which it is hot or
+                    cold, wet or dry, calm or stormy, clear or cloudy. On Earth, most weather phenomena occur in the
+                    lowest level of the planet's atmosphere, the troposphere, just below the stratosphere. Weather
+                    refers to day-to-day temperature and precipitation activity, whereas climate is the term for the
+                    averaging of atmospheric conditions over longer periods of time. When used without qualification,
+                    "weather" is generally understood to mean the weather of Earth.
+                    Weather forecasting is the application of science and technology to predict the state of the
+                    atmosphere for a future time and a given location. Human beings have attempted to predict the
+                    weather informally for millennia, and formally since at least the nineteenth century. Weather
+                    forecasts are made by collecting quantitative data about the current state of the atmosphere and
+                    using scientific understanding of atmospheric processes to project how the atmosphere will evolve.
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock content %}

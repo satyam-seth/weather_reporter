@@ -28,7 +28,7 @@ def get_report(loc):
 class HomeView(View):
     def get(self,request):
         fm=SearchForm()
-        context={'form':fm,'home_active':'active'}
+        context={'form':fm,'home_active':'active','home_disabled':'disabled'}
         return render(request,'core/home.html',context)
 
     def post(self,request):
@@ -42,4 +42,5 @@ class HomeView(View):
             context['error']='invalid location'
         context['form']=fm
         context['home_active']='active'
+        context['home_disabled']='disabled'
         return render(request,'core/home.html',context)
