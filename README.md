@@ -1,5 +1,5 @@
 # [weather_reporter](https://weather-reporter-247.herokuapp.com/)
-This a Django based website for Weather Reporting. In this, used web scraping to fetch the weather information from Google search result.
+This is a Django based website for Weather Reporting. In this, used web scraping to fetch the weather information from Google search result.
 
 ## Steps to execute -
 1.Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all python packages on your system which is listed in [requirements.txt](https://github.com/satyam-seth/weather_reporter/blob/master/requirements.txt) file.
