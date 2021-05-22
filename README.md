@@ -15,3 +15,5 @@ This is a Django based website for Weather Reporting. In this, used web scraping
 ### See Project - https://weather-reporter-247.herokuapp.com/
 
 ### Demo Video - https://youtu.be/yzsrqoHQybo
+
+![Demo GIF](https://github.com/satyam-seth/weather_reporter/blob/master/demo.gif)
